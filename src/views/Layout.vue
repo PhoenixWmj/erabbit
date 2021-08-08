@@ -1,10 +1,10 @@
 <template>
   <!-- 顶部通栏 -->
   <AppTopnav />
-  <!-- 吸顶头部组件 -->
-  <AppHeaderSticky />
   <!-- 头部组件 -->
   <AppHeader />
+  <!-- 吸顶头部组件 -->
+  <AppHeaderSticky />
   <!-- 内容容器 -->
   <div class="app-body">
     <!-- 二级路由 -->
@@ -15,8 +15,8 @@
 </template>
 <script>
 import AppTopnav from "@/components/app-topnav";
-import AppHeaderSticky from "@/components/app-header-sticky";
 import AppHeader from "@/components/app-header";
+import AppHeaderSticky from "@/components/app-header-sticky";
 import AppFooter from "@/components/app-footer";
 import { useStore } from "vuex";
 
@@ -24,8 +24,8 @@ export default {
   name: "Layout",
   components: {
     AppTopnav,
-    AppHeaderSticky,
     AppHeader,
+    AppHeaderSticky,
     AppFooter,
   },
   // 获取分类数据
@@ -37,6 +37,6 @@ export default {
 </script>
 <style scoped lang="less">
 .app-body {
-  height: 600px;
+  min-height: 600px;
 }
 </style>
