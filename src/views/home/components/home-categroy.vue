@@ -38,7 +38,7 @@
       <!-- 商品 -->
       <ul v-if="currCategory && currCategory.goods">
         <li v-for="item in currCategory.goods" :key="item.id">
-          <RouterLink to="/">
+          <RouterLink :to="`/product/${item.id}`">
             <img :src="item.picture" alt="" />
             <div class="info">
               <p class="name ellipsis-2">{{ item.name }}</p>
@@ -68,7 +68,7 @@
 </template>
 
 <script>
-import { computed, reactive, ref } from "vue-demi";
+import { computed, reactive, ref } from "vue";
 import { useStore } from "vuex";
 import { findBrand } from "@/api/home";
 export default {

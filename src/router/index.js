@@ -31,7 +31,11 @@ const router = createRouter({
   // 使用hash的路由模式
   history: createWebHashHistory(),
   // 配置路由规则 写法和之前一样
-  routes
+  routes,
+  // 每次切换路由的时候 滚动到页面顶部
+  scrollBehavior() {
+    return { left: 0, top: 0 }
+  }
 })
 
 export default router
