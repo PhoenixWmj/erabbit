@@ -12,7 +12,7 @@
     </dl>
     <dl>
       <dt>配送</dt>
-      <dd>至 <XtxCity /></dd>
+      <dd>至 <XtxCity @change="changeCity" :fullLocation="fullLocation" /></dd>
     </dl>
     <dl>
       <dt>服务</dt>
@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import { ref } from "vue-demi";
 export default {
   name: "GoodName",
   props: {
@@ -34,6 +35,33 @@ export default {
       type: Object,
       default: () => ({}),
     },
+  },
+  setup(props) {
+    // 提供给后台的四项数据 如果没登录 显示默认值
+    const provinceCode = ref("110000");
+    const cityCode = ref("119900");
+    const countyCode = ref("110101");
+    const fullLocation = ref("北京市 市辖区 东城区");
+    // 已登录 取出用户收货地址中默认的地址给四个数据赋值
+    if (props.goods.userAddresses) {
+      const defaultAdresses = props.goods.userAddresses.find(
+        (item) => item.isDeafult === 1
+      );
+      if (defaultAdresses) {
+        provinceCode.value = defaultAddr.provinceCode;
+        cityCode.value = defaultAddr.cityCode;
+        countyCode.value = defaultAddr.countyCode;
+        fullLocation.value = defaultAddr.fullLocation;
+      }
+    }
+    // 城市选中事件处理函数
+    const changeCity = (result) => {
+      provinceCode.value = result.provinceCode;
+      cityCode.value = result.cityCode;
+      countyCode.value = result.countyCode;
+      fullLocation.value = result.fullLocation;
+    };
+    return { fullLocation, changeCity };
   },
 };
 </script>

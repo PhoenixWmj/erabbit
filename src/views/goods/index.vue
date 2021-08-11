@@ -19,7 +19,16 @@
           <GoodsSales />
         </div>
         <div class="spec">
+          <!-- 名字区组件 -->
           <GoodsName :goods="goods" />
+          <!-- 规格组件 -->
+          <GoodsSku :goods="goods" stuId="300261929" @change="changeSku" />
+          <!-- 数量组件 -->
+          <XtxNumbox label="数量" v-model="num" :max="goods.inventory" />
+          <!-- 按钮组件 -->
+          <XtxButton type="primary" style="margin-top: 20px">
+            加入购物车
+          </XtxButton>
         </div>
       </div>
       <!-- 商品推荐 -->
@@ -47,13 +56,32 @@ import GoodsRelevant from "./components/goods-relevant";
 import GoodsImage from "./components/goods-image";
 import GoodsSales from "./components/goods-sales";
 import GoodsName from "./components/goods-name";
+import GoodsSku from "./components/goods-sku";
+import XtxNumbox from "@/components/library/xtx-numbox.vue";
 export default {
   name: "XtxGoodsPage",
-  components: { GoodsRelevant, GoodsImage, GoodsSales, GoodsName },
+  components: {
+    GoodsRelevant,
+    GoodsImage,
+    GoodsSales,
+    GoodsName,
+    GoodsSku,
+    XtxNumbox,
+  },
   setup() {
     // 1、获取商品详情 进行渲染
     const goods = useGoods();
-    return { goods };
+    const changeSku = (sku) => {
+      // 修改商品的现价 原价 库存
+      if (sku.skuId) {
+        (goods.value.price = sku.price),
+          (goods.value.oldPrice = sku.oldPrice),
+          (goods.value.inventory = sku.inventory);
+      }
+    };
+    // 选择的数量
+    const num = ref(1);
+    return { goods, changeSku, num };
   },
 };
 // 获取商品详情的函数 单独封装一个函数 从setup中抽离
