@@ -37,19 +37,22 @@
       <div class="goods-footer">
         <div class="goods-article">
           <!-- 商品+评价 -->
-          <div class="goods-tabs"></div>
+          <GoodsTabs />
           <!-- 注意事项 -->
-          <div class="goods-warn"></div>
+          <GoodsWarn />
         </div>
         <!-- 24热榜+专题推荐 -->
-        <div class="goods-aside"></div>
+        <div class="goods-aside">
+          <GoodsHot />
+          <GoodsHot :type="2" />
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { nextTick, ref, watch } from "vue";
+import { nextTick, provide, ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import { findGoods } from "@/api/product";
 import GoodsRelevant from "./components/goods-relevant";
@@ -57,7 +60,9 @@ import GoodsImage from "./components/goods-image";
 import GoodsSales from "./components/goods-sales";
 import GoodsName from "./components/goods-name";
 import GoodsSku from "./components/goods-sku";
-import XtxNumbox from "@/components/library/xtx-numbox.vue";
+import GoodsTabs from "./components/goods-tabs";
+import GoodsHot from "./components/goods-hot";
+import GoodsWarn from "./components/goods-warn";
 export default {
   name: "XtxGoodsPage",
   components: {
@@ -66,7 +71,9 @@ export default {
     GoodsSales,
     GoodsName,
     GoodsSku,
-    XtxNumbox,
+    GoodsTabs,
+    GoodsHot,
+    GoodsWarn,
   },
   setup() {
     // 1、获取商品详情 进行渲染
@@ -79,6 +86,10 @@ export default {
           (goods.value.inventory = sku.inventory);
       }
     };
+
+    //提供goods数据给后代组件使用
+    provide("goods", goods);
+
     // 选择的数量
     const num = ref(1);
     return { goods, changeSku, num };
@@ -135,13 +146,13 @@ const useGoods = () => {
     min-height: 1000px;
   }
 }
-.goods-tabs {
-  min-height: 600px;
-  background: #fff;
-}
-.goods-warn {
-  min-height: 600px;
-  background: #fff;
-  margin-top: 20px;
-}
+// .goods-tabs {
+//   min-height: 600px;
+//   background: #fff;
+// }
+// .goods-warn {
+//   min-height: 600px;
+//   background: #fff;
+//   margin-top: 20px;
+// }
 </style>
