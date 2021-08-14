@@ -10,6 +10,8 @@ import defaultImg from '@/assets/images/200.png'
 // import XtxBread from './xtx-bread.vue'
 // import XtxBreadItem from './xtx-bread-item.vue'
 
+import Message from './Message'
+
 // 批量注册组件步骤：
 // 使用 require 提供的函数 context 加载某一个目录下的所有 .vue 后缀的文件
 // 然后 context 函数会返回一个导入函数 importFn
@@ -40,6 +42,9 @@ export default {
 
     // 定义指令
     defineDirective(app)
+
+    // 定义一个原型函数
+    app.config.globalProperties.$message = Message
   }
 }
 

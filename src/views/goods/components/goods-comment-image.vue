@@ -2,6 +2,7 @@
   <div class="goods-comment-image">
     <div class="list">
       <a
+        :class="{ active: currImg === url }"
         @click="currImg = url"
         href="javascript:;"
         v-for="url in pictures"
@@ -10,9 +11,9 @@
         <img :src="url" alt="" />
       </a>
     </div>
-    <div class="preview" v-if="currImage">
+    <div class="preview" v-if="currImg">
       <img :src="currImg" alt="" />
-      <i class="iconfont icon-close-new"></i>
+      <i @click="currImg = null" class="iconfont icon-close-new"></i>
     </div>
   </div>
 </template>
