@@ -67,7 +67,7 @@ const defineDirective = (app) => {
           el.src = binding.value
         }
       }, {
-        threshold: 0.01
+        threshold: 0
       })
       // 开启观察
       observer.observe(el)
