@@ -22,13 +22,11 @@
     </li>
   </ul>
 </template>
-
 <script>
 export default {
   name: "GoodsSales",
 };
 </script>
-
 <style scoped lang='less'>
 .goods-sales {
   display: flex;

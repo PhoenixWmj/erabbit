@@ -1,6 +1,6 @@
 // 提供一个能够显示xtx-message组件的函数
 // 这个函数将来导入直接使用 也可以挂载在vue实例原型上
-// import Message from 'Message.js' 使用 M而是萨格({type: 'error', text: '提示文字'})
+// import Message from 'Message.js' 使用Message({type: 'error', text: '提示文字'})
 // this.$message({type: 'error', text: '提示文字'})
 import { createVNode, render } from 'vue'
 import XtxMessage from './xtx-message.vue'

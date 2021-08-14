@@ -2,7 +2,7 @@
 import request from '@/utils/request'
 
 /**
- * 获取所有分类（顶级 二级 对应的商品推荐数据）
+ * 获取所有分类(顶级 二级 对应的商品推荐数据)
  * @returns Promise
  */
 export const findAllCategory = () => {
@@ -27,7 +27,7 @@ export const findSubCategoryFilter = (id) => {
 }
 
 /**
- * 获取分类下的商品（带筛选条件）
+ * 获取分类下的商品(带筛选条件)
  * @param {Object} params - 可参考接口文档
  */
 export const findSubCategoryGoods = (params) => {

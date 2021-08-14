@@ -25,7 +25,6 @@
     </dl>
   </div>
 </template>
-
 <script>
 import { ref } from "vue-demi";
 export default {
@@ -65,7 +64,6 @@ export default {
   },
 };
 </script>
-
 <style lang="less" scoped>
 .g-name {
   font-size: 22px;

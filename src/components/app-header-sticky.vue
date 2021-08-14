@@ -10,7 +10,6 @@
     </div>
   </div>
 </template>
-
 <script>
 // import { onMounted, ref } from "vue";
 import { useWindowScroll } from "@vueuse/core";
@@ -37,7 +36,6 @@ export default {
   // },
 };
 </script>
-
 <style scoped lang='less'>
 .app-header-sticky {
   width: 100%;

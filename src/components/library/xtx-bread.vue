@@ -26,7 +26,6 @@ export default {
   },
 };
 </script>
-
 <style lang='less'>
 // 去除scoped属性 目的是让样式作用到xtx-bread-item组件
 .xtx-bread {

@@ -14,7 +14,6 @@
     </div>
   </div>
 </template>
-
 <script>
 export default {
   name: "HomeGoods",
@@ -26,7 +25,6 @@ export default {
   },
 };
 </script>
-
 <style scoped lang='less'>
 .goods-item {
   width: 240px;

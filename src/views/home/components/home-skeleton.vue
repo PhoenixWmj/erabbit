@@ -7,7 +7,6 @@
     </div>
   </div>
 </template>
-
 <script>
 export default {
   name: "HomeSkeleton",
@@ -19,7 +18,6 @@ export default {
   },
 };
 </script>
-
 <style scoped lang='less'>
 .home-skeleton {
   width: 1240px;

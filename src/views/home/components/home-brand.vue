@@ -42,7 +42,6 @@
     </div>
   </HomePanel>
 </template>
-
 <script>
 import { ref } from "vue-demi";
 import HomePanel from "./home-panel";
@@ -72,7 +71,6 @@ export default {
   },
 };
 </script>
-
 <style scoped lang='less'>
 .home-panel {
   background: #f5f5f5;

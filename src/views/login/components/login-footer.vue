@@ -14,13 +14,11 @@
     </div>
   </footer>
 </template>
-
 <script>
 export default {
   name: "LoginFooter",
 };
 </script>
-
 <style scoped lang='less'>
 .login-footer {
   padding: 30px 0 50px;

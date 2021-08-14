@@ -19,7 +19,6 @@ import AppHeader from "@/components/app-header";
 import AppHeaderSticky from "@/components/app-header-sticky";
 import AppFooter from "@/components/app-footer";
 import { useStore } from "vuex";
-
 export default {
   name: "Layout",
   components: {

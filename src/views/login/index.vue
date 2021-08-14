@@ -26,12 +26,13 @@
   </section>
   <LoginFooter />
 </template>
-
 <script>
 import LoginHeader from "./components/login-header";
 import LoginFooter from "./components/login-footer";
 import LoginForm from "./components/login-form";
 import { ref } from "vue-demi";
+import { useStore } from "vuex";
+import { useRoute } from "vue-router";
 export default {
   name: "PageLogin",
   components: {
@@ -41,11 +42,14 @@ export default {
   },
   setup() {
     const activeName = ref("account");
+    // 存储回调地址
+    const store = useStore();
+    const route = useRoute();
+    store.commit("user/setRedirectUrl", route.query.redirectUrl || "/");
     return { activeName };
   },
 };
 </script>
-
 <style scoped lang='less'>
 .login-section {
   background: url(../../assets/images/login-bg.png) no-repeat center / cover;

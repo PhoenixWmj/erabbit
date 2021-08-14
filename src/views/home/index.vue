@@ -27,7 +27,6 @@ import HomeHot from "./components/home-hot";
 import HomeBrand from "./components/home-brand";
 import HomeProduct from "./components/home-product";
 import HomeSpecial from "./components/home-special";
-
 export default {
   name: "HomePage",
   components: {

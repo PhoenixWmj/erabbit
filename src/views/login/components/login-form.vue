@@ -102,10 +102,15 @@
       <a @click="login()" href="javascript:;" class="btn">登录</a>
     </Form>
     <div class="action">
-      <img
-        src="https://qzonestyle.gtimg.cn/qzone/vas/opensns/res/img/Connect_logo_7.png"
-        alt=""
-      />
+      <!-- <span id="qqLoginBtn"></span> -->
+      <a
+        href="https://graph.qq.com/oauth2.0/authorize?client_id=100556005&response_type=token&scope=all&redirect_uri=http%3A%2F%2Fwww.corho.com%3A8080%2F%23%2Flogin%2Fcallback"
+      >
+        <img
+          src="https://qzonestyle.gtimg.cn/qzone/vas/opensns/res/img/Connect_logo_7.png"
+          alt=""
+        />
+      </a>
       <div class="url">
         <a href="javascript:;">忘记密码</a>
         <a href="javascript:;">免费注册</a>
@@ -113,7 +118,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import { onUnmounted, reactive, ref, watch } from "vue";
 import { Form, Field } from "vee-validate";
@@ -126,8 +130,8 @@ import {
 } from "@/api/user";
 import { useStore } from "vuex";
 import { useRoute, useRouter } from "vue-router";
-import { useIntervalFn } from "@vueuse/shared";
-
+import { useIntervalFn } from "@vueuse/core";
+// import QC from "qc";
 export default {
   name: "LoginForm",
   components: {
@@ -209,7 +213,14 @@ export default {
           }
           // 存储用户信息
           const { id, account, avatar, mobile, nickname, token } = data.result;
-          store.commit("user/setUser", {});
+          store.commit("user/setUser", {
+            id,
+            account,
+            avatar,
+            mobile,
+            nickname,
+            token,
+          });
           // 进行跳转
           router.push(route.query.redirectUrl || "/");
           // 消息提示
@@ -256,11 +267,16 @@ export default {
         formCom.value.setFieldError("mobile", valid);
       }
     };
+    // 初始化QQ登录按钮
+    // 1、准备sapn id = qqLoginBtn
+    // 2、 QC.Login({btnIn: "qqLoginBtn"})
+    // onMounted(() => {
+    //   QC.Login({ btnId: "qqLoginBtn" });
+    // });
     return { isMsgLogin, form, schema: mySchema, formCom, login, send, time };
   },
 };
 </script>
-
 <style scoped lang="less">
 // 账号容器
 .account-box {

@@ -50,7 +50,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import { nextTick, provide, ref, watch } from "vue";
 import { useRoute } from "vue-router";
@@ -118,7 +117,6 @@ const useGoods = () => {
   return goods;
 };
 </script>
-
 <style scoped lang='less'>
 .goods-info {
   min-height: 600px;

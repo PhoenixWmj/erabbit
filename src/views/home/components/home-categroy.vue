@@ -66,7 +66,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import { computed, reactive, ref } from "vue";
 import { useStore } from "vuex";
@@ -108,7 +107,6 @@ export default {
   },
 };
 </script>
-
 <style scoped lang='less'>
 .home-category {
   width: 250px;

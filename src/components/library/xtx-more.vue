@@ -4,7 +4,6 @@
     <i class="iconfont icon-angle-right"></i>
   </RouterLink>
 </template>
-
 <script>
 export default {
   name: "XtxMore",
@@ -16,7 +15,6 @@ export default {
   },
 };
 </script>
-
 <style scoped lang='less'>
 .xtx-more {
   margin-bottom: 2px;

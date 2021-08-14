@@ -6,7 +6,6 @@
     <p class="price">&yen;{{ goods.price }}</p>
   </RouterLink>
 </template>
-
 <script>
 export default {
   name: "GoodsItem",
@@ -18,7 +17,6 @@ export default {
   },
 };
 </script>
-
 <style scoped lang='less'>
 .goods-item {
   display: block;

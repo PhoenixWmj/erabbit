@@ -29,7 +29,6 @@
     </HomePanel>
   </div>
 </template>
-
 <script>
 import HomePanel from "./home-panel";
 import HomeGoods from "./home-goods";
@@ -44,7 +43,6 @@ export default {
   },
 };
 </script>
-
 <style scoped lang='less'>
 .home-product {
   background: #fff;

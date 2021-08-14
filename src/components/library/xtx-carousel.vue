@@ -48,7 +48,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import { onUnmounted, ref, watch } from "vue-demi";
 export default {

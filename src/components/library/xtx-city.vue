@@ -20,7 +20,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import { computed, reactive, ref } from "vue";
 import { onClickOutside } from "@vueuse/core";
@@ -138,7 +137,6 @@ const getCityData = () => {
   });
 };
 </script>
-
 <style scoped lang="less">
 .xtx-city {
   display: inline-block;

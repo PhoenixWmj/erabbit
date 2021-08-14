@@ -22,7 +22,6 @@
     <component :is="activeName"></component>
   </div>
 </template>
-
 <script>
 import { inject, ref } from "vue";
 import GoodsComment from "./goods-comment";
@@ -38,7 +37,6 @@ export default {
   },
 };
 </script>
-
 <style scoped lang="less">
 .goods-tabs {
   min-height: 600px;

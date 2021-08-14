@@ -7,9 +7,9 @@
       @mousemove="show(item)"
       @mouseleave="hide(item)"
     >
-      <RouterLink @click="hide(item)" :to="`/category/${item.id}`">{{
-        item.name
-      }}</RouterLink>
+      <RouterLink @click="hide(item)" :to="`/category/${item.id}`">
+        {{ item.name }}
+      </RouterLink>
       <div class="layer" :class="{ open: item.open }">
         <ul>
           <li v-for="sub in item.children" :key="sub.id">
@@ -48,7 +48,6 @@ export default {
   },
 };
 </script>
-
 <style scoped lang="less">
 .app-header-nav {
   width: 820px;

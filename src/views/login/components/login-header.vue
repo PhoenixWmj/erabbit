@@ -11,13 +11,11 @@
     </div>
   </header>
 </template>
-
 <script>
 export default {
   name: "LoginHeader",
 };
 </script>
-
 <style scoped lang='less'>
 .login-header {
   background: #fff;

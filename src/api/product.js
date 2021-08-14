@@ -32,16 +32,15 @@ export const findHotGoods = ({ id, type, limit = 3 }) => {
  * @param {String} id - 商品ID
  */
 export const findGoodsCommentInfo = (id) => {
+  // https://mock.boxuegu.com/mock/1175/goods/${id}/evaluate 一个临时接口
   // return request(`/goods/${id}/evaluate`,'get')
   return request(`https://mock.boxuegu.com/mock/1175/goods/${id}/evaluate`, 'get')
 }
-// https://mock.boxuegu.com/mock/1175/goods/${id}/evaluate
 
 /**
  * 获取商品的评价统计信息
  * @param {String} id - 商品ID
  * @param {Object} params - 商品参数
- * @returns
  */
 export const findGoodsCommentList = (id, params) => {
   return request(`https://mock.boxuegu.com/mock/1175/goods/${id}/evaluate/page`, 'get', params)

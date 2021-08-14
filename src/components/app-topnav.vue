@@ -4,10 +4,10 @@
       <ul>
         <template v-if="profile.token">
           <li>
-            <RouterLink to="/member"
-              ><i class="iconfont icon-user"></i
-              >{{ profile.account }}</RouterLink
-            >
+            <a href="javascript:;">
+              <i class="iconfont icon-user"></i>
+              {{ profile.account }}
+            </a>
           </li>
           <li><a @click="logout()" href="javascript:;">退出登录</a></li>
         </template>
@@ -41,7 +41,6 @@ export default {
     const profile = computed(() => {
       return store.state.user.profile;
     });
-    console.log(profile.token);
     // 退出登录
     // 1、清空本地存储信息和vuex的用户信息
     // 2、跳转登录

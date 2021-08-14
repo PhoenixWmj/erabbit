@@ -5,9 +5,9 @@
       {{ category.top.name }}
     </XtxBreadItem>
     <Transition name="fade-right" mode="out-in">
-      <XtxBreadItem :key="category.sub.id" v-if="category.sub">{{
-        category.sub.name
-      }}</XtxBreadItem>
+      <XtxBreadItem :key="category.sub.id" v-if="category.sub">
+        {{ category.sub.name }}
+      </XtxBreadItem>
     </Transition>
   </XtxBread>
 </template>

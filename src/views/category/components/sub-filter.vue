@@ -9,8 +9,9 @@
           href="javascript:;"
           v-for="item in filterData.brands"
           :key="item.id"
-          >{{ item.name }}</a
         >
+          {{ item.name }}
+        </a>
       </div>
     </div>
     <div class="item" v-for="item in filterData.saleProperties" :key="item.id">
@@ -22,8 +23,9 @@
           href="javascript:;"
           v-for="prop in item.properties"
           :key="prop.id"
-          >{{ prop.name }}</a
         >
+          {{ prop.name }}
+        </a>
       </div>
     </div>
   </div>

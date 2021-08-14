@@ -13,7 +13,6 @@
     </div>
   </div>
 </template>
-
 <script>
 export default {
   name: "HomePanel",
@@ -31,7 +30,6 @@ export default {
   },
 };
 </script>
-
 <style scoped lang='less'>
 .home-panel {
   background-color: #fff;

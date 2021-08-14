@@ -64,13 +64,11 @@
     </div>
   </footer>
 </template>
-
 <script>
 export default {
   name: "AppFooter",
 };
 </script>
-
 <style scoped lang="less">
 .app-footer {
   overflow: hidden;

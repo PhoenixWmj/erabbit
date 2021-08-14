@@ -19,7 +19,6 @@
     </HomePanel>
   </div>
 </template>
-
 <script>
 import HomePanel from "./home-panel";
 import HomeSkeleton from "./home-skeleton";
@@ -41,7 +40,6 @@ export default {
   },
 };
 </script>
-
 <style scoped lang='less'>
 .goods-list {
   display: flex;

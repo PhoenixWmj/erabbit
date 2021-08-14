@@ -8,12 +8,11 @@
     <XtxCarousel :sliders="sliders" />
   </div>
 </template>
-
 <script>
 import { findRelevantGoods } from "@/api/product";
 import { ref } from "vue";
 export default {
-  // 同类推荐，猜你喜欢
+  // 同类推荐 猜你喜欢
   name: "GoodsRelevant",
   props: {
     goodsId: {
@@ -38,7 +37,6 @@ export default {
   },
 };
 </script>
-
 <style scoped lang='less'>
 .goods-relevant {
   background: #fff;

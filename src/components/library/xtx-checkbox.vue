@@ -7,7 +7,7 @@
 </template>
 <script>
 import { useVModel } from "@vueuse/core";
-// v-model  ====>  :modelValue  +  @update:modelValue
+// v-model ====> :modelValue + @update:modelValue
 export default {
   name: "XtxCheckbox",
   props: {

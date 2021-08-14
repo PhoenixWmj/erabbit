@@ -28,7 +28,6 @@
     </div>
   </HomePanel>
 </template>
-
 <script>
 import HomePanel from "./home-panel";
 import { useLazyData } from "@/hooks";
@@ -42,7 +41,6 @@ export default {
   },
 };
 </script>
-
 <style scoped lang='less'>
 .home-panel {
   background: #f5f5f5;
