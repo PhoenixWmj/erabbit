@@ -37,7 +37,7 @@ instance.interceptors.response.use(res => res.data, err => {
   if (err.response && err.response.status === 401) {
     // 1、清空无效用户信息
     // 2、跳转到登录页
-    // 3、跳转需要传参（当前路由地址）给登录页码
+    // 3、跳转需要传参(当前路由地址)给登录页码
     store.commit('user/setUser', {})
     // 当前路由地址
     // 组件里头：`/user?a=10` $route.path === /user     $route.fullPath === /user?a=10
