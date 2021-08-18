@@ -80,17 +80,16 @@ const updateDisabledStatus = (specs, pathMap) => {
     });
   });
 };
-// 设置默认选中
-// const initDefaultSelected = (goods, skuId) => {
-//   // 1、找出sku的信息
-//   // 2、遍历每一个按钮 按钮的值和sku记录的值相同 就选中。
-//   const sku = goods.skus.find((sku) => sku.id === skuId);
-//   goods.specs.forEach((item, i) => {
-//     const val = item.values.find((val) => val.name === sku.specs[i].valueName);
-//     val.selected = true;
-//   });
-//   console.log("1");
-// };
+// 默认选中
+const initDefaultSelected = (goods, skuId) => {
+  // 1、找出sku的信息
+  // 2、遍历每一个按钮 按钮的值和sku记录的值相同 就选中
+  const sku = goods.skus.find((sku) => sku.id === skuId);
+  goods.specs.forEach((item, i) => {
+    const val = item.values.find((val) => val.name === sku.specs[i].valueName);
+    val.selected = true;
+  });
+};
 export default {
   name: "GoodsSku",
   props: {
@@ -105,10 +104,10 @@ export default {
   },
   setup(props, { emit }) {
     const pathMap = getPathMap(props.goods.skus);
-    // 根据skuId设置初始化默认选中
-    // if (props.skuId) {
-    //   initDefaultSelected(props.goods, props.skuId);
-    // }
+    // 根据skuId初始化选中
+    if (props.skuId) {
+      initDefaultSelected(props.goods, props.skuId);
+    }
     // ☆组件初始化：更新按钮禁用状态
     updateDisabledStatus(props.goods.specs, pathMap);
     // 1、选中和取消选中 约定每一个按钮都拥有自己的选中状态数据selected

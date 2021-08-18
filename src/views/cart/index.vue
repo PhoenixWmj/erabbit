@@ -49,7 +49,11 @@
                   <div>
                     <p class="name ellipsis">{{ goods.name }}</p>
                     <!-- 选择规格组件 -->
-                    <!-- <p class="attr">{{ goods.attrsText }}</p> -->
+                    <CartSku
+                      @change="($event) => updateCartSku(goods.skuId, $event)"
+                      :skuId="goods.skuId"
+                      :attrsText="goods.attrsText"
+                    />
                   </div>
                 </div>
               </td>
@@ -63,7 +67,11 @@
                 </p>
               </td>
               <td class="tc">
-                <XtxNumbox :modelValue="goods.count" />
+                <XtxNumbox
+                  @change="($event) => updateCount(goods.skuId, $event)"
+                  :max="goods.stock"
+                  :modelValue="goods.count"
+                />
               </td>
               <td class="tc">
                 <p class="f16 red">
@@ -144,15 +152,15 @@
           >
             全选
           </XtxCheckbox>
-          <a href="javascript:;">删除商品</a>
+          <a @click="batchDeleteCart()" href="javascript:;">删除商品</a>
           <a href="javascript:;">移入收藏夹</a>
-          <a href="javascript:;">清空失效商品</a>
+          <a @click="batchDeleteCart(true)" href="javascript:;">清空失效商品</a>
         </div>
         <div class="total">
           共 {{ $store.getters["cart/validTotal"] }} 件商品，已选择
           {{ $store.getters["cart/selectedTotal"] }} 件，商品合计：
           <span class="red">¥{{ $store.getters["cart/selectedAmount"] }}</span>
-          <XtxButton type="primary">下单结算</XtxButton>
+          <XtxButton @click="checkout()" type="primary">下单结算</XtxButton>
         </div>
       </div>
       <!-- 猜你喜欢 -->
@@ -161,13 +169,16 @@
   </div>
 </template>
 <script>
-import CartNone from "./components/cart-none.vue";
+import CartNone from "./components/cart-none";
 import GoodRelevant from "@/views/goods/components/goods-relevant";
+import CartSku from "./components/cart-sku";
 import { useStore } from "vuex";
 import Message from "@/components/library/Message";
+import Confirm from "@/components/library/Confirm";
+import { useRouter } from "vue-router";
 export default {
   name: "XtxCartPage",
-  components: { GoodRelevant, CartNone },
+  components: { GoodRelevant, CartNone, CartSku },
   setup() {
     const store = useStore();
     // 单选
@@ -180,11 +191,60 @@ export default {
     };
     // 删除
     const deleteCart = (skuId) => {
-      store.dispatch("cart/deleteCart", skuId).then(() => {
-        Message({ type: "success", text: "删除成功" });
-      });
+      Confirm({ text: "亲，您确定从购物车删除该商品吗？" })
+        .then(() => {
+          store.dispatch("cart/deleteCart", skuId).then(() => {
+            Message({ type: "success", text: "删除成功" });
+          });
+        })
+        .catch((e) => {});
     };
-    return { checkOne, checkAll, deleteCart };
+    // 批量删除选中商品 也支持清空无效商品
+    const batchDeleteCart = (isClear) => {
+      Confirm({
+        text: `您确定从购物车删除${isClear ? "失效" : "选中"}的商品吗？`,
+      })
+        .then(() => {
+          store.dispatch("cart/batchDeleteCart", isClear);
+        })
+        .catch((e) => {});
+    };
+    // 修改数量
+    const updateCount = (skuId, count) => {
+      store.dispatch("cart/updateCart", { skuId, count });
+    };
+    // 修改规格
+    const updateCartSku = (oldSkuId, newSku) => {
+      store.dispatch("cart/updateCartSku", { oldSkuId, newSku });
+    };
+    // 结算
+    const router = useRouter();
+    const checkout = () => {
+      // 1、判断是否选中商品 且提示
+      // 2、弹出确认框 提示下单结算需要登录
+      // 3、使用导航守卫 遇到需要登录的路由跳转 拦截到登录页面
+      if (store.getters["cart/selectedList"].length === 0) {
+        return Message({ text: "请至少选中一件商品" });
+      }
+      // 如果登录直接跳转
+      if (store.state.user.profile.token) {
+        return router.push("/member/checkout");
+      }
+      Confirm({ text: "下单结算需要登录，现在去登录吗？" })
+        .then(() => {
+          router.push("/member/checkout");
+        })
+        .catch((e) => {});
+    };
+    return {
+      checkOne,
+      checkAll,
+      deleteCart,
+      batchDeleteCart,
+      updateCount,
+      updateCartSku,
+      checkout,
+    };
   },
 };
 </script>

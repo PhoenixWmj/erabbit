@@ -14,7 +14,7 @@
         <div
           class="item"
           v-for="goods in $store.getters['cart/validList']"
-          :key="goods.stuId"
+          :key="goods.skuId"
         >
           <RouterLink :to="`/product/${goods.id}`">
             <img :src="goods.picture" alt="" />
@@ -54,7 +54,7 @@ export default {
   name: "AppHeaderCart",
   setup() {
     const store = useStore();
-    store.dispatch("cart/findCartList").then(() => {
+    store.dispatch("cart/findCart").then(() => {
       Message({ type: "success", text: "更新本地购物车成功" });
     });
     // 删除函数

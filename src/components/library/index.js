@@ -11,6 +11,7 @@ import defaultImg from '@/assets/images/200.png'
 // import XtxBreadItem from './xtx-bread-item.vue'
 
 import Message from './Message'
+import Confirm from './Confirm'
 
 // 批量注册组件步骤：
 // 使用 require 提供的函数 context 加载某一个目录下的所有 .vue 后缀的文件
@@ -45,6 +46,7 @@ export default {
 
     // 定义一个原型函数
     app.config.globalProperties.$message = Message
+    app.config.globalProperties.$confirm = Confirm
   }
 }
 

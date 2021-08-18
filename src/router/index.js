@@ -1,4 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import store from '@/store'
+
 const Layout = () => import('@/views/Layout')
 const Home = () => import('@/views/home')
 const TopCategory = () => import('@/views/category/index')
@@ -8,6 +10,8 @@ const Cart = () => import('@/views/cart/index')
 
 const Login = () => import('@/views/login/index')
 const LoginCallBack = () => import('@/views/login/callback')
+
+const Checkout = () => import('@/views/member/pay/checkout')
 
 const routes = [
   // 一级路由布局容器
@@ -27,7 +31,8 @@ const routes = [
         component: SubCategory
       },
       { path: '/product/:id', component: Goods },
-      { path: '/cart', component: Cart }
+      { path: '/cart', component: Cart },
+      { path: '/member/checkout', component: Checkout }
     ]
   },
   {
@@ -49,6 +54,16 @@ const router = createRouter({
   scrollBehavior() {
     return { left: 0, top: 0 }
   }
+})
+
+// 前置导航守卫
+router.beforeEach((to, from, next) => {
+  // 需要登录的路由：地址是以/member开头
+  const { profile } = store.state.user
+  if (!profile.token && to.path.startsWith('/member')) {
+    return next('/login?redirectUrl=' + encodeURIComponent(to.fullPath))
+  }
+  next()
 })
 
 export default router

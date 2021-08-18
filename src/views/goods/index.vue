@@ -22,7 +22,7 @@
           <!-- 名字区组件 -->
           <GoodsName :goods="goods" />
           <!-- 规格组件 -->
-          <GoodsSku :goods="goods" stuId="300261929" @change="changeSku" />
+          <GoodsSku :goods="goods" @change="changeSku" />
           <!-- 数量组件 -->
           <XtxNumbox label="数量" v-model="num" :max="goods.inventory" />
           <!-- 按钮组件 -->
