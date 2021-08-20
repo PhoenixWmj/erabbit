@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import store from '@/store'
+import { h } from 'vue'
 
 const Layout = () => import('@/views/Layout')
 const Home = () => import('@/views/home')
@@ -12,6 +13,13 @@ const Login = () => import('@/views/login/index')
 const LoginCallBack = () => import('@/views/login/callback')
 
 const Checkout = () => import('@/views/member/pay/checkout')
+const Pay = () => import('@/views/member/pay/index')
+const PayResult = () => import('@/views/member/pay/result')
+
+const MemberLayout = () => import('@/views/member/Layout')
+const MemberHome = () => import('@/views/member/home')
+const MemberOrder = () => import('@/views/member/order')
+const MemberOrderDetail = () => import('@/views/member/order/detail')
 
 const routes = [
   // 一级路由布局容器
@@ -32,7 +40,26 @@ const routes = [
       },
       { path: '/product/:id', component: Goods },
       { path: '/cart', component: Cart },
-      { path: '/member/checkout', component: Checkout }
+      { path: '/member/checkout', component: Checkout },
+      { path: '/member/pay', component: Pay },
+      { path: '/pay/callback', component: PayResult },
+      {
+        path: '/member',
+        component: MemberLayout,
+        children: [
+          { path: '/member', component: MemberHome },
+          {
+            path: '/member/order/',
+            // vue3.0 需要有嵌套关系才能模糊匹配
+            // 创建一个RouterLink容器形成嵌套关系
+            component: { render: () => h(<RouterView />) },
+            children: [
+              { path: '', component: MemberOrder },
+              { path: ':id', component: MemberOrderDetail }
+            ]
+          }
+        ]
+      },
     ]
   },
   {
